@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
-    <van-button type="default">默认按钮</van-button>
+    <!-- <van-button type="default">默认按钮</van-button>
 <van-button type="primary">主要按钮</van-button>
 <van-button type="info">信息按钮</van-button>
 <van-button type="warning">警告按钮</van-button>
@@ -11,7 +11,7 @@
 <span class="info">hahaha</span>
 <i class="icon icon-Apple"></i>
 <i class="icon icon-apple"></i>
-<van-icon class-prefix="icon" name="apple" />
+<van-icon class-prefix="icon" name="apple" /> -->
 
   </div>
 </template>
