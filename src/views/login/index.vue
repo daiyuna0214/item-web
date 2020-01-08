@@ -19,7 +19,7 @@
 
 <script>
 import '@/styles/base.less'// 引入公共样式
-import request from '@/utils/request.js'
+import { Login } from '@/api/user.js'
 export default {
   name: 'LoginPage',
   data () {
@@ -42,11 +42,7 @@ export default {
       // 表单验证
       // 发请求
       try {
-        let res = await request({
-          url: '/app/v1_0/authorizations',
-          method: 'post',
-          data: user
-        })
+        let res = await Login(user)
         console.log(res)
         this.$toast.success('登录成功')
       } catch (error) {
