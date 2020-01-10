@@ -9,6 +9,9 @@ import 'normalize.css'
 // 配置rem
 import 'amfe-flexible'
 
+// 引入表单验证文件
+import './utils/validation'
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -9,3 +9,10 @@ export const Login = data => {
     data
   })
 }
+// 用户登录模块--获取短信验证码
+export const getMsCode = mobile => {
+  return request({
+    url: `/app/v1_0/sms/codes/${mobile}`,
+    mobile
+  })
+}

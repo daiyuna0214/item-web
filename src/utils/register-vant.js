@@ -3,7 +3,7 @@
 import Vue from 'vue'
 
 // 加载需要使用的组件
-import { Button, cell, CellGroup, icon, NavBar, Field, Toast } from 'vant'
+import { Button, cell, CellGroup, icon, NavBar, Field, Toast, CountDown } from 'vant'
 // 注册
 Vue.use(Button)
   .use(cell)
@@ -12,3 +12,4 @@ Vue.use(Button)
   .use(NavBar)
   .use(Field)
   .use(Toast)
+  .use(CountDown)
