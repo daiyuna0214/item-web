@@ -81,6 +81,8 @@ export default {
         // 登录成功将后端返回的token数据存储到容器中
         this.$store.commit('setUser', data.data)
         this.$toast.success('登录成功')
+        // 跳转到首页
+        this.$router.push('/')
       } catch (error) {
         console.log('登录失败', error)
         this.$toast.fail('登录失败，手机号或验证码错误')

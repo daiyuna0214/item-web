@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
-import Login from '../views/login'
 
 Vue.use(VueRouter)
 
@@ -21,7 +20,27 @@ const routes = [
   // }
   {
     path: '/login', // 配置登录路由
-    component: Login
+    component: () => import ('../views/login')
+  },
+  {
+    path: '/', // 二级路由
+    component: () => import('../views/tab-bar'),
+    children: [{
+      path: '',
+      component: () => import('../views/home')
+    },
+    {
+      path: '/my',
+      component: () => import('../views/my')
+    },
+    {
+      path: '/video',
+      component: () => import('../views/video')
+    },
+    { path: '/question',
+      component: () => import('../views/question')
+    }
+    ]
   }
 ]
 

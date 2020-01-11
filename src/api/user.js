@@ -16,3 +16,9 @@ export const getMsCode = mobile => {
     mobile
   })
 }
+// 获取登录用户个人资料
+export const getUserInfo = data => {
+  return request({
+    url: '/app/v1_0/user'
+  })
+}
