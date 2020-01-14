@@ -41,6 +41,13 @@ const routes = [
       component: () => import('../views/question')
     }
     ]
+  },
+  {
+    path: '/user/:userId', // 在根目录下配置用户信息路由
+    component: () => import('../views/user')
+  }, {
+    path: '/search',
+    component: () => import('../views/search')
   }
 ]
 

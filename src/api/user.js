@@ -22,3 +22,9 @@ export const getUserInfo = data => {
     url: '/app/v1_0/user'
   })
 }
+// 获取指定用户个人信息
+export const getUserInfoById = userId => {
+  return request({
+    url: `/app/v1_0/users/${userId}`
+  })
+}
