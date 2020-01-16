@@ -48,6 +48,11 @@ const routes = [
   }, {
     path: '/search',
     component: () => import('../views/search')
+  }, {
+    path: '/article/:articleId',
+    component: () => import('../views/article'),
+    // 将动态路由参数映射到组件的props中
+    props: true
   }
 ]
 

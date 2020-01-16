@@ -12,6 +12,9 @@ import 'amfe-flexible'
 // 引入表单验证文件
 import './utils/validation'
 
+// 引入处理日期的文件
+import './utils/datatime'
+
 Vue.config.productionTip = false
 
 new Vue({

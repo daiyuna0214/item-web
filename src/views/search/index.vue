@@ -81,6 +81,7 @@ export default {
     },
     onCancel () {
       console.log('cancel')
+      this.$router.push('/')
     },
     // 输入事件，输入时展示联想建议
     // debounce函数

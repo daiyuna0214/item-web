@@ -6,7 +6,7 @@ import Vue from 'vue'
 import { Button, cell, CellGroup, icon, NavBar, Field,
   Toast, CountDown, Tabbar, TabbarItem, Grid, GridItem,
   image, Dialog, List, Tab, Tabs, PullRefresh, Popup,
-  Search
+  Search, Loading
 } from 'vant'
 // 注册
 Vue.use(Button)
@@ -29,3 +29,4 @@ Vue.use(Button)
   .use(PullRefresh)
   .use(Popup)
   .use(Search)
+  .use(Loading)

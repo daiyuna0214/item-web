@@ -28,3 +28,20 @@ export const getUserInfoById = userId => {
     url: `/app/v1_0/users/${userId}`
   })
 }
+// 关住用户
+export const followUser = target => {
+  return request({
+    url: '/app/v1_0/user/followings',
+    method: 'post',
+    data: { target// target:被关住用户的id
+    }
+  })
+}
+// 取消关住用户
+export const concelFollowUser = target => {
+  return request({
+    // target:被关住用户的id
+    url: `/app/v1_0/user/followings/${target}`,
+    method: 'delete'
+  })
+}

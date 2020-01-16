@@ -11,6 +11,7 @@
             v-for="item in list"
             :key="item.id"
             :title="item.title"
+            @click="$router.push('/article/'+item.art_id)"
         />
       </van-list>
     </van-pull-refresh>
