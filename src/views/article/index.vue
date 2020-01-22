@@ -48,7 +48,6 @@
       <div class="markdown-body" v-html="list.content"></div>
     </div>
     <!-- /文章详情 -->
-
     <!-- 加载失败提示 -->
     <div class="error" v-else>
       <img src="./no-network.png" alt="no-network">
@@ -61,6 +60,11 @@
     </div>
     <!-- /加载失败提示 -->
 
+    <!-- 文章评论 -->
+    <article-comment :article-id='articleId' ref="article-comment"
+    @click-reply="onReplyShow"
+    ></article-comment>
+
     <!-- 底部区域 -->
     <div class="footer">
       <van-button
@@ -68,6 +72,7 @@
         type="default"
         round
         size="small"
+        @click="isPostShow=true"
       >写评论</van-button>
       <van-icon
         class="comment-icon"
@@ -86,6 +91,19 @@
       <van-icon class="share-icon" name="share" />
     </div>
     <!-- /底部区域 -->
+    <!-- 发布文章评论 -->
+    <van-popup v-model="isPostShow" position="bottom" :style="{height:'20%'}">
+      <!-- 评论内容组件 -->
+      <!-- 在组件是使用v-model
+      以前父传子:value='postMessage'
+      现在@input='postMessage'=事件参数，本质还是父子通信，会给子组件传递一个名叫value的数据
+      -->
+      <post-comment v-model='postMessage' @click-post="onPost"/>
+    </van-popup>
+    <!--回复评论 -->
+    <van-popup v-model="isReplyShow" position="bottom" :style="{height:'90%'}">
+      <comment-reply :comment='currentComment' :articleId='articleId'></comment-reply>
+    </van-popup>
   </div>
 </template>
 
@@ -99,8 +117,12 @@ import { followUser, concelFollowUser } from '../../api/user'
 // mapMutation：映射获取mutation数据
 // mapAction：映射获取action数据
 import { mapState } from 'vuex'
-
+import articleComment from './components/article-comment'
+import postComment from './components/post-comment'
+import { addComments } from '../../api/comment'
+import commentReply from './components/comment-reply'
 export default {
+  components: { articleComment, postComment, commentReply },
   props: {
     articleId: {
       type: String,
@@ -116,16 +138,52 @@ export default {
     return {
       list: {}, // 接收文章详情数据
       loading: true, // 文章加载的状态
-      isFollowLoading: false// 关注按钮的loading状态
+      isFollowLoading: false, // 关注按钮的loading状态
+      isPostShow: false, // 是否展示写评论的弹框
+      postMessage: '', // 发布评论内容
+      isReplyShow: false, // 是否展示评论回复的弹框
+      currentComment: ''// 记录点击回复评论的对象
     }
   },
   methods: {
+    // 回复评论
+    onReplyShow (comment) {
+      // 记录点击回复的评论对象
+      this.currentComment = comment
+      this.isReplyShow = true
+    },
+    // 发布评论
+    async onPost () {
+      this.$toast.loading({
+        duration: 0, // 持续展示 toast
+        message: '发布中...',
+        forbidClick: true // 是否禁止背景点击
+      })
+      try {
+        // console.log('发布')
+        let res = await addComments({
+          target: this.articleId,
+          content: this.postMessage
+        })
+        // console.log(res)
+        // 清空文本框内容
+        this.postMessage = ''
+        // 关闭弹层
+        this.isPostShow = false
+        // 将数据添加到列表顶部
+        this.$refs['article-comment'].list.unshift(res.data.data.new_obj)
+        this.$toast.success('评论成功')
+      } catch (error) {
+        console.log(error)
+        this.$toast.fail('评论失败')
+      }
+    },
     async loadArticle () {
     //   文章加载时loading为true
       this.loading = true
       try {
         let res = await getArticlesById(this.articleId)
-        console.log(res)
+        // console.log(res)
         this.list = res.data.data
       } catch (error) {
       }

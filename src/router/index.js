@@ -42,6 +42,10 @@ const routes = [
     }
     ]
   },
+  {// 此处需要注意路由匹配的优先级，从上到下
+    path: '/user/profile',
+    component: () => import('../views/user-profile')
+  },
   {
     path: '/user/:userId', // 在根目录下配置用户信息路由
     component: () => import('../views/user')
