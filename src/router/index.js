@@ -57,7 +57,21 @@ const routes = [
     component: () => import('../views/article'),
     // 将动态路由参数映射到组件的props中
     props: true
+  },
+  // 我的作品
+  {
+    path: '/my-article/:type?', // ?代表my-article后面的可有可无
+    component: () => import('../views/user-articles'),
+    props: true
   }
+  // {
+  //   path: '/my-article/collect',
+  //   component: () => import('../views/user-articles')
+  // },
+  // {
+  //   path: '/my-article/history',
+  //   component: () => import('../views/user-articles')
+  // }
 ]
 
 const router = new VueRouter({

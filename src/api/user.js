@@ -45,3 +45,30 @@ export const concelFollowUser = target => {
     method: 'delete'
   })
 }
+
+// 获取用户资料
+
+export const getUserProfile = () => {
+  return request({
+    url: '/app/v1_0/user/profile'
+  })
+}
+
+// 更新用户头像
+
+export const updateUserPhoto = data => {
+  return request({
+    method: 'patch',
+    url: '/app/v1_0/user/photo',
+    data
+  })
+}
+// 更新用户资料
+
+export const updateUserProfile = data => {
+  return request({
+    method: 'patch',
+    url: '/app/v1_0/user/profile',
+    data
+  })
+}

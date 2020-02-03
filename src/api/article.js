@@ -51,3 +51,27 @@ export const concelLikeArticle = target => {
     url: `/app/v1_0/article/likings/${target}`
   })
 }
+// 获取用户收藏列表
+export const getUserCollect = params => {
+  return request({
+    method: 'get',
+    url: '/app/v1_0/article/collections',
+    params
+  })
+}
+// 获取用户文章列表
+export const getUserArticle = params => {
+  return request({
+    method: 'get',
+    url: '/app/v1_0/user/articles',
+    params
+  })
+}
+// 获取用户阅读历史列表
+export const getUserHistory = params => {
+  return request({
+    method: 'get',
+    url: '/app/v1_0/user/histories',
+    params
+  })
+}
