@@ -1,6 +1,6 @@
 <template>
   <div class="user-articles">
-      <van-nav-bar fixed title="我的收藏/历史/作品" left-arrow  @click-left="$router.back()"/>
+      <van-nav-bar fixed title="我的收藏/历史/作品" left-arrow  @click-left="$router.replace('/my')"/>
       <van-tabs v-model="active">
         <van-tab title="我的收藏">
           <Collect />
@@ -20,6 +20,7 @@ import Article from './components/article'
 import Collect from './components/collect'
 import History from './components/history'
 export default {
+  name: 'userArticles',
   components: {
     Article,
     Collect,
@@ -36,6 +37,18 @@ export default {
     return {
       active// 控制激活的标签选项
     }
+  },
+  // 路由导航钩子
+  beforeRouteLeave (to, from, next) {
+    console.log(to)
+    // 如果跳转的是文章详情页，则把当前页面缓存起来，否则不缓存
+    if (to.name === 'article') {
+      this.$store.commit('addCachePage', 'userArticles')
+    } else {
+      this.$store.commit('removeCachePage', 'userArticles')
+    }
+    // 放行通过
+    next()
   }
 }
 </script>

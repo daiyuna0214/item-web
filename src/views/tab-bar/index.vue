@@ -2,7 +2,9 @@
 <!-- 标签栏 -->
   <div class="tab-bar-contener">
     <!-- 二级路由视图 -->
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
     <van-tabbar v-model="active">
       <van-tabbar-item to="/" icon="wap-home">首页</van-tabbar-item>
       <van-tabbar-item to="/question" icon="comment-o">问答</van-tabbar-item>
@@ -15,7 +17,7 @@
 
 <script>
 export default {
-  name: 'tab-bar-page',
+  name: 'tabBar',
   data () {
     return {
       active: 0

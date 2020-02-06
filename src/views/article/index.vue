@@ -122,6 +122,7 @@ import postComment from './components/post-comment'
 import { addComments } from '../../api/comment'
 import commentReply from './components/comment-reply'
 export default {
+  name: 'article',
   components: { articleComment, postComment, commentReply },
   props: {
     articleId: {

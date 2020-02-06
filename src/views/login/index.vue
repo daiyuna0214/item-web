@@ -32,7 +32,7 @@ import '@/styles/base.less'// 引入公共样式
 import { Login, getMsCode } from '@/api/user.js'
 import { validate } from 'vee-validate'
 export default {
-  name: 'LoginPage',
+  name: 'login',
   data () {
     return {
       user: {
@@ -81,8 +81,9 @@ export default {
         // 登录成功将后端返回的token数据存储到容器中
         this.$store.commit('setUser', data.data)
         this.$toast.success('登录成功')
-        // 跳转到首页
-        this.$router.push('/')
+        // 如果有redirect则跳转到来源页面，没有就跳转到首页
+        const redirect = this.$route.query.redirect || '/'
+        this.$router.replace(redirect)
       } catch (error) {
         console.log('登录失败', error)
         this.$toast.fail('登录失败，手机号或验证码错误')

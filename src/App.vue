@@ -1,21 +1,23 @@
 <template>
   <div id="app">
-    <router-view/>
-    <!-- <van-button type="default">默认按钮</van-button>
-<van-button type="primary">主要按钮</van-button>
-<van-button type="info">信息按钮</van-button>
-<van-button type="warning">警告按钮</van-button>
-<van-button type="danger">危险按钮</van-button>
-<van-icon name="chat-o" />
-<van-icon name="good-job-o" />
-<span class="info">hahaha</span>
-<i class="icon icon-Apple"></i>
-<i class="icon icon-apple"></i>
-<van-icon class-prefix="icon" name="apple" /> -->
-
+    <!-- <router-view/>是一个动态组件,
+    外面包裹keep-alive标签会使组件缓存 -->
+    <keep-alive :include="$store.state.cachePages">
+        <router-view/>
+    </keep-alive>
   </div>
 </template>
 
+<script>
+export default {
+  name: 'App',
+  data () {
+    return {
+      cachePages: ['tabBar']
+    }
+  }
+}
+</script>
 <style lang="less">
 .info{
   background-color: #ccc;

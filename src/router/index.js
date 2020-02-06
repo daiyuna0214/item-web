@@ -19,6 +19,7 @@ const routes = [
   //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   // }
   {
+    name: 'login',
     path: '/login', // 配置登录路由
     component: () => import ('../views/login')
   },
@@ -46,6 +47,10 @@ const routes = [
     path: '/user/profile',
     component: () => import('../views/user-profile')
   },
+  {// 此处需要注意路由匹配的优先级，从上到下
+    path: '/user/chat',
+    component: () => import('../views/user-chat')
+  },
   {
     path: '/user/:userId', // 在根目录下配置用户信息路由
     component: () => import('../views/user')
@@ -53,6 +58,7 @@ const routes = [
     path: '/search',
     component: () => import('../views/search')
   }, {
+    name: 'article',
     path: '/article/:articleId',
     component: () => import('../views/article'),
     // 将动态路由参数映射到组件的props中
@@ -60,6 +66,7 @@ const routes = [
   },
   // 我的作品
   {
+    name: 'userArticles',
     path: '/my-article/:type?', // ?代表my-article后面的可有可无
     component: () => import('../views/user-articles'),
     props: true
