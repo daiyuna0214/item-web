@@ -3,28 +3,30 @@
       <van-nav-bar fixed title="我的收藏/历史/作品" left-arrow  @click-left="$router.replace('/my')"/>
       <van-tabs v-model="active">
         <van-tab title="我的收藏">
-          <Collect />
+          <!-- <Collect /> -->
         </van-tab>
         <van-tab title="历史">
-          <History />
+          <!-- <History /> -->
         </van-tab>
         <van-tab title="作品">
-            <Article />
+            <!-- <Article /> -->
         </van-tab>
       </van-tabs>
+          <!-- 动态组件 -->
+    <component v-bind:is="currentTabComponent"></component>
   </div>
 </template>
 
 <script>
-import Article from './components/article'
-import Collect from './components/collect'
-import History from './components/history'
+// import Article from './components/article'
+// import Collect from './components/collect'
+// import History from './components/history'
 export default {
   name: 'userArticles',
   components: {
-    Article,
-    Collect,
-    History
+    Article: () => import('./components/article'),
+    Collect: () => import ('./components/collect'),
+    History: () => import ('./components/history')
   },
   props: {
     type: String
@@ -35,7 +37,13 @@ export default {
       active = 2// 我的作品
     }
     return {
-      active// 控制激活的标签选项
+      active // 控制激活的标签选项
+      // currentTabComponent: 'Collect'
+    }
+  },
+  computed: {
+    currentTabComponent () {
+      return ['Article', 'Collect', 'History'][this.active]
     }
   },
   // 路由导航钩子
