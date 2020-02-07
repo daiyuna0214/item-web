@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0a4772"],{"070e":function(e,n,t){"use strict";t.r(n);var s=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",{staticClass:"question-contener"},[e._v("问答")])},a=[],u={name:"questionPage"},c=u,i=t("2877"),l=Object(i["a"])(c,s,a,!1,null,null,null);n["default"]=l.exports}}]);
+//# sourceMappingURL=chunk-2d0a4772.74946b1f.js.map
